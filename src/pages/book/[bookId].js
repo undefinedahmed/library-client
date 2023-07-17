@@ -45,7 +45,7 @@ const BookDetails = () => {
     if (str === 'phoneNumber') return 'Phone Number'
     if (str === 'nationalIdentity') return 'National Identity'
     if (str === 'checkOutDate') return 'Check Out Date'
-    if (str === 'defaultCheckInDate') return 'Default Check In Date'
+    if (str === 'defaultCheckInDate') return 'To Be Returned On'
     if (str === 'checkedBy') return 'Checked By'
     if (str === 'checkInOutHistory') return 'Check In/Out History'
     return str
