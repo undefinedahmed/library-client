@@ -1,10 +1,29 @@
 import Grid from '@mui/material/Grid'
 import FormLayoutsIcons from 'src/views/form-layouts/FormLayoutsIcons'
-import 'react-datepicker/dist/react-datepicker.css'
+import { useRouter } from 'next/router'
+import api from 'src/api'
 
 const CheckOut = () => {
-  const submitHandler = data => {
+  const router = useRouter()
+  const { bookId } = router.query
+
+  const submitHandler = async data => {
     console.log(data)
+
+    const objectForApi = {
+      action: 'check-out',
+      historyObject: {
+        ...data,
+        checkOutDate: new Date()
+      }
+    }
+
+    const response = await api.post(`book/${bookId}/update-book`, objectForApi)
+    if (response.status === 200) {
+      router.push(`/book/${response.data.book._id}`)
+    } else {
+      alert(`Something Went Wrong! ${response.message || response.error}`)
+    }
   }
 
   return (
